@@ -43,7 +43,7 @@ class OrganizationControllerTest extends AbstractTestCase {
         
         $organizationService = $this->container->get('app.organizationService');
         $expectedOrganizations = $organizationService->getOrganizations();
-        $jmsSerializerService = $this->container->get('jms_serializer');
+        $jmsSerializerService = $this->container->get('serializer');
         $jsonOrganizations = $jmsSerializerService->serialize($expectedOrganizations, 'JSON');
         
         // Assert JSON structure is returned holding all organizations

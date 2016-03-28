@@ -32,7 +32,7 @@ class AbstractTestCase extends PHPUnit_Framework_TestCase {
                     'PHP_AUTH_USER' => $username,
                     'PHP_AUTH_PW' => $password)
                 );
-        $jmsSerializerService = $this->container->get('jms_serializer');
+        $jmsSerializerService = $this->container->get('serializer');
         try{
             $tokenArray = $jmsSerializerService->deserialize(/*$data = */ $this->client->getResponse()->getContent(), /*$type = */ 'array', /*$format = */ 'JSON');
             return $tokenArray['token'];
