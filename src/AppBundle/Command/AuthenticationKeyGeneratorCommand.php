@@ -3,7 +3,7 @@ namespace AppBundle\Command;
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Command\Command;
+use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use DateTime;
 
 /**
@@ -11,7 +11,7 @@ use DateTime;
  * keys renewal adds a lot to our REST API security, but too much renewal will increase the frequency of Basic HTTP Authentication, so a balance is required
  * 
  */
-class AuthenticationKeyGeneratorCommand extends Command {
+class AuthenticationKeyGeneratorCommand extends ContainerAwareCommand {
 
      /**
      * configure command name and description

@@ -2,8 +2,6 @@
 
 namespace AppBundle\Tests;
 
-use JMS\Serializer\Exception\RuntimeException;
-
 /**
  * AbstractRestTestCase - middle layer between AbstractTestCase on one side and rest test cases on the other side
  */
@@ -36,7 +34,7 @@ class AbstractTestCase extends PHPUnit_Framework_TestCase {
         try{
             $tokenArray = $jmsSerializerService->deserialize(/*$data = */ $this->client->getResponse()->getContent(), /*$type = */ 'array', /*$format = */ 'JSON');
             return $tokenArray['token'];
-        } catch (RuntimeException $e) {
+        } catch (\Exception $e) {
             return false;
         }
     }
