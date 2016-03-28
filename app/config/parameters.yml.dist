@@ -9,3 +9,10 @@ parameters:
     mailer_password:   ~
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
+    RestApiAuthentication.privateKeyPath: ssh private key path
+    RestApiAuthentication.publicKeyPath:  ssh public key path
+    RestApiAuthentication.passPhrase:      ''           # ssh key pass phrase
+    RestApiAuthentication.tokenTTL:        600          # token ttl - defaults to 86400
+    RestApiAuthentication.digestAlg:        sha512      # digest method to use
+    RestApiAuthentication.privateKeyBits:        4096   # specifies how many bits should be used to generate a private key
+    RestApiAuthentication.keyLifePeriodInDays:        7  

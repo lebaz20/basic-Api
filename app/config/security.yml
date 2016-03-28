@@ -1,13 +1,27 @@
 # To get started with security, check out the documentation:
 # http://symfony.com/doc/current/book/security.html
 security:
-
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_REST_API_ADMIN: ROLE_REST_API_ADMIN
+        
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
         in_memory:
             memory: ~
 
     firewalls:
+        secured_rest_api:
+            pattern: ^/(rest|api)(?!/technical)/
+            lexik_jwt: ~
+            stateless:  true
+            provider: fos_userbundle
+        rest_api_login:
+            pattern: ^/authenticate/user
+            http_basic:
+              realm: "Secured REST Area by Basic HTTP Authentication"
+              provider: fos_userbundle
+            stateless:  true
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -22,3 +36,8 @@ security:
 
             # form_login: ~
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+
+    access_control:
+        # REST Api Admin Access Control
+        - { path: ^/rest/, role: ROLE_REST_API_ADMIN , requires_channel: https}
+        - { path: ^/authenticate/user, role: IS_AUTHENTICATED_ANONYMOUSLY , requires_channel: https}

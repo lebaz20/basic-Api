@@ -1,0 +1,4 @@
+organization_rest_edge:
+    type: rest
+    resource: AppBundle\Controller\OrganizationController
+    name_prefix:  rest_ # Our precious parameter
